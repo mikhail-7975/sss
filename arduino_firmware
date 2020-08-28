@@ -1,0 +1,24 @@
+#include <Servo.h>
+
+Servo servo; //объявляем переменную servo типа Servo
+
+void setup() {
+  servo.attach(10); //привязываем привод к порту 10
+  Serial.begin(115200);
+}
+
+char inp;
+//'o' - open
+//'c' - close
+
+void loop() {
+  if (Serial.available()) {
+    inp = Serial.read();
+  }
+  if(inp == 'o') {
+    servo.write(90);
+  } else {
+    servo.write(0);
+  }
+  delay(1000);
+}
